@@ -1,0 +1,7 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+    - name: Install Python 3, pip, and setuptools
+      ansible.builtin.include_role:
+        name: "mirsg.install_python3"

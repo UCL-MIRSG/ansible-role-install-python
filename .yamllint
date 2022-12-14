@@ -2,9 +2,6 @@
 # Based on ansible-lint config
 extends: default
 
-ignore: |
-  .direnv/
-
 rules:
   braces:
     max-spaces-inside: 1

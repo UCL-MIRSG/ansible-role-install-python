@@ -1,0 +1,16 @@
+---
+# This is an example playbook to execute Ansible tests.
+
+- name: Verify Python 3 is being used
+  hosts: all
+  vars:
+    - ansible_python_interpreter: /usr/bin/python3
+  gather_facts: true
+  gather_subset:
+    - "python"
+    - "!min"
+    - "!all"
+  tasks:
+    - name: Check Python 3 is being used
+      ansible.builtin.assert:
+        that: ansible_facts['python']['version']['major'] is version('3')

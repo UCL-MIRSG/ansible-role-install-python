@@ -1,16 +1,16 @@
 ---
 # tasks file for ansible-role-install-python3
 - name: Install Python for the current OS family
-  include_tasks: "{{ ansible_os_family }}.yml"
+  ansible.builtin.include_tasks: "{{ ansible_os_family }}.yml"
 
 - name: Ensure python-setuptools is installed
-  ansible.builtin.apy:
+  ansible.builtin.package:
     name:
-      - python3"
+      - python3
       - python3-pip
       - python3-setuptools
     update_cache: true
-    state: installed
+    state: present
 
 - name: Update pip to the latest version
   ansible.builtin.pip:
