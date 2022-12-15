@@ -1,0 +1,57 @@
+---
+name: Molecule Test
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the codebase
+        uses: actions/checkout@v2
+      - name: Set up Python 3
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.x"
+      - name: Install lint dependencies
+        run: pip3 install yamllint
+      - name: Lint code
+        run: |
+          yamllint .
+
+  molecule:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        molecule_docker_image:
+          - rockylinux:8
+          - systemd/centos7
+          - ubuntu2204
+        molecule_docker_commans:
+          - /usr/sbin/init
+        include:
+          - molecule_docker_image: ubuntu2204
+            molecule_docker_command: /lib/systemd/systemd
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python 3.9
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
+      - name: Install dependencies
+        run: |
+          sudo apt-get update && sudo apt-get -y install rsync
+          python3 -m pip install --upgrade pip
+          python3 -m pip install -r requirements.txt
+      - name: Test with molecule
+        run: |
+          molecule test
+        env:
+          PY_COLORS: "1"
+          ANSIBLE_FORCE_COLOR: "1"
+          MOLECULE_DOCKER_IMAGE: ${{ matrix.molecule_docker_image }}
+          MOLECULE_DOCKER_COMMAND: ${{ matrix.molecule_docker_command }}
