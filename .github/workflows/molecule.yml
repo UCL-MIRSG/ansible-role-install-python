@@ -30,7 +30,7 @@ jobs:
         molecule_docker_image:
           - rockylinux:8
           - systemd/centos7
-          - ubuntu2204
+          - ubuntu:22.04
         molecule_docker_commans:
           - /usr/sbin/init
         include:
