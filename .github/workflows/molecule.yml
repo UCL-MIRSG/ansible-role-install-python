@@ -33,6 +33,9 @@ jobs:
           - ubuntu:22.04
         molecule_docker_command:
           - /usr/sbin/init
+        exclude:
+          - molecule_docker_image: ubuntu:22.04
+            molecule_docker_command: /usr/sbin/init
         include:
           - molecule_docker_image: ubuntu:22.04
             molecule_docker_command: /lib/systemd/systemd
