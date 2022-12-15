@@ -2,7 +2,7 @@
 dependency:
   name: galaxy
 driver:
-  name: podman
+  name: docker
 platforms:
   - name: rocky8
     image: geerlingguy/docker-rockylinux8-ansible:latest
@@ -33,8 +33,14 @@ provisioner:
   config_options:
     defaults:
       callback_whitelist: profile_tasks, timer, yaml
-    ssh_connection:
-      pipelining: false
+  inventory:
+    group_vars:
+      all:
+        additional_networks: []
+        default_networks:
+          - "0.0.0.0/0"
+  env:
+    ANSIBLE_VERBOSITY: "1"
 verifier:
   name: ansible
   env:
