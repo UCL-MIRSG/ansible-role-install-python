@@ -42,11 +42,8 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: 3.9
-      - name: Install dependencies
-        run: |
-          sudo apt-get update && sudo apt-get -y install rsync
-          python3 -m pip install --upgrade pip
-          python3 -m pip install -r requirements.txt
+      - name: Install test dependencies
+        run: python3 -m pip install -r requirements.txt
       - name: Test with molecule
         run: |
           molecule test
