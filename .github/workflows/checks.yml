@@ -1,5 +1,5 @@
 ---
-name: Molecule Test
+name: Pre-commit checks
 on:
   pull_request:
   push:
