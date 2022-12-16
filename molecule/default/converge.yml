@@ -1,6 +1,12 @@
 ---
 - name: Converge
   hosts: all
+  become: true
+  gather_facts: true
+  gather_subset:
+    - "os_family"
+    - "!min"
+    - "!all"
   tasks:
     - name: Install Python 3, pip, and setuptools
       ansible.builtin.include_role:
