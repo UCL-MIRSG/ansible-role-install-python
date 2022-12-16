@@ -32,7 +32,7 @@ jobs:
           - rockylinux:8
           - centos/systemd
           - geerlingguy/docker-centos7-ansible:latest
-          - ubuntu:22.04
+          - geerlingguy/docker-ubuntu2204-ansible:latest
         molecule_docker_command:
           - /usr/sbin/init
         exclude:
