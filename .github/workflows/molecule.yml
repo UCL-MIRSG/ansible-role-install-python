@@ -36,10 +36,10 @@ jobs:
         molecule_docker_command:
           - /usr/sbin/init
         exclude:
-          - molecule_docker_image: ubuntu:22.04
+          - molecule_docker_image: geerlingguy/docker-ubuntu2204-ansible:latest
             molecule_docker_command: /usr/sbin/init
         include:
-          - molecule_docker_image: ubuntu:22.04
+          - molecule_docker_image: geerlingguy/docker-ubuntu2204-ansible:latest
             molecule_docker_command: /lib/systemd/systemd
     steps:
       - uses: actions/checkout@v3
