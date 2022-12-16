@@ -12,7 +12,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out the codebase
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
+        with:
+          path: "mirsg.install_python3"
       - name: Set up Python 3
         uses: actions/setup-python@v2
         with:
@@ -42,7 +44,10 @@ jobs:
           - molecule_docker_image: geerlingguy/docker-ubuntu2204-ansible:latest
             molecule_docker_command: /lib/systemd/systemd
     steps:
-      - uses: actions/checkout@v3
+      - name: Check out the codebase
+        uses: actions/checkout@v3
+        with:
+          path: "mirsg.install_python3"
       - name: Set up Python 3.9
         uses: actions/setup-python@v2
         with:
@@ -53,6 +58,7 @@ jobs:
           python3 -m pip install --upgrade pip
           python3 -m pip install -r requirements.txt
       - name: Test with molecule
+        working-directory: "mirsg.install_python3"
         run: |
           molecule test
         env:
