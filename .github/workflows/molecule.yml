@@ -36,7 +36,7 @@ jobs:
       matrix:
         molecule_docker_image:
           - rockylinux:8
-          - centos/7
+          - centos:7
           - geerlingguy/docker-centos7-ansible:latest
           - geerlingguy/docker-ubuntu2204-ansible:latest
     steps:
