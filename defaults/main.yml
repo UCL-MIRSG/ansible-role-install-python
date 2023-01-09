@@ -11,8 +11,8 @@ install_python2_packages:
   - python-pip
   - python-setuptools
 
-extra_python2_packages: []  # to be installed by the OS package manager, NOT by pip
-extra_python3_packages: []  # to be installed by the OS package manager, NOT by pip
+extra_python2_packages: [] # to be installed by the OS package manager, NOT by pip
+extra_python3_packages: [] # to be installed by the OS package manager, NOT by pip
 
-python2_pip_packages: []  # to be installed using pip
-python3_pip_packages: []  # to be installed using pip3
+python2_pip_packages: [] # to be installed using pip
+python3_pip_packages: [] # to be installed using pip3

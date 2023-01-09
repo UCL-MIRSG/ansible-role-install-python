@@ -9,17 +9,19 @@ If you would like to run Ansible Molecule to test this role, the requirements ar
 ## Role Variables
 
 `install_python_3_packages`: list of packages to be installed when Python 3 is the default interpreter. This defaults to:
+
 ```yaml
-  - python3
-  - python3-pip
-  - python3-setuptools
+- python3
+- python3-pip
+- python3-setuptools
 ```
 
 `install_python2_packages`: list of packages to be installed when Python 2 is the default interpreter. This defaults to:
+
 ```yaml
-  - python
-  - python-pip
-  - python-setuptools
+- python
+- python-pip
+- python-setuptools
 ```
 
 `extra_python3_packages`: list of additional Python 3 packages to to be installed by the OS package manager, NOT by pip
