@@ -31,14 +31,14 @@ should be installed on your managed host. As such, you will need to gather these
     - "!min"
     - "!all"
   roles:
-    - mirsg.install_python3
+    - mirsg.install_python
 ```
 
 This will gather only the necessary facts (`ansible_os_family` and `ansible_distribution_major_version`) to run the role and install Python.
 
 ## License
 
-[BSD 3-Clause License](https://github.com/UCL-MIRSG/ansible-role-install-python3/blob/main/LICENSE).
+[BSD 3-Clause License](https://github.com/UCL-MIRSG/ansible-role-install-python/blob/main/LICENSE).
 
 ## Author Information
 

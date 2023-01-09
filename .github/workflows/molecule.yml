@@ -8,7 +8,7 @@ on:
 
 defaults:
   run:
-    working-directory: "mirsg.install_python3"
+    working-directory: "mirsg.install_python"
 
 jobs:
   lint:
@@ -18,7 +18,7 @@ jobs:
       - name: Check out the codebase
         uses: actions/checkout@v3
         with:
-          path: "mirsg.install_python3"
+          path: "mirsg.install_python"
       - name: Set up Python 3
         uses: actions/setup-python@v2
         with:
@@ -51,7 +51,7 @@ jobs:
       - name: Check out the codebase
         uses: actions/checkout@v3
         with:
-          path: "mirsg.install_python3"
+          path: "mirsg.install_python"
       - name: Set up Python 3.9
         uses: actions/setup-python@v2
         with:
