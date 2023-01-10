@@ -1,8 +1,8 @@
 galaxy_info:
   author: Paul Smith
-  description: Install Python 3, pip, and setuptools
+  description: Install Python and associated system packages
   company: UCL
-  role_name: install_python3
+  role_name: install_python
   namespace: mirsg
 
   # If the issue tracker for your role is not on github, uncomment the

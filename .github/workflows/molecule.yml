@@ -8,7 +8,7 @@ on:
 
 defaults:
   run:
-    working-directory: "mirsg.install_python3"
+    working-directory: "mirsg.install_python"
 
 jobs:
   lint:
@@ -18,7 +18,7 @@ jobs:
       - name: Check out the codebase
         uses: actions/checkout@v3
         with:
-          path: "mirsg.install_python3"
+          path: "mirsg.install_python"
       - name: Set up Python 3
         uses: actions/setup-python@v2
         with:
@@ -36,7 +36,6 @@ jobs:
       matrix:
         molecule_docker_image:
           - rockylinux:8
-          - centos/systemd
           - geerlingguy/docker-centos7-ansible:latest
           - geerlingguy/docker-ubuntu2204-ansible:latest
         molecule_docker_command:
@@ -51,7 +50,7 @@ jobs:
       - name: Check out the codebase
         uses: actions/checkout@v3
         with:
-          path: "mirsg.install_python3"
+          path: "mirsg.install_python"
       - name: Set up Python 3.9
         uses: actions/setup-python@v2
         with:
