@@ -39,6 +39,14 @@ jobs:
           - centos:7
           - geerlingguy/docker-centos7-ansible:latest
           - geerlingguy/docker-ubuntu2204-ansible:latest
+        molecule_docker_command:
+          - /usr/sbin/init
+        exclude:
+          - molecule_docker_image: geerlingguy/docker-ubuntu2204-ansible:latest
+            molecule_docker_command: /usr/sbin/init
+        include:
+          - molecule_docker_image: geerlingguy/docker-ubuntu2204-ansible:latest
+            molecule_docker_command: /lib/systemd/systemd
     steps:
       - name: Check out the codebase
         uses: actions/checkout@v3
@@ -60,3 +68,4 @@ jobs:
           PY_COLORS: "1"
           ANSIBLE_FORCE_COLOR: "1"
           MOLECULE_DOCKER_IMAGE: ${{ matrix.molecule_docker_image }}
+          MOLECULE_DOCKER_COMMAND: ${{ matrix.molecule_docker_command }}
