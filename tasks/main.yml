@@ -19,7 +19,7 @@
   loop: "{{ install_python3_packages }}"
   when: install_python_version == 3
 
-- name: Update pip to the latest version
+- name: Update pip
   ansible.builtin.pip:
     name:
       - pip
