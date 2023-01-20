@@ -1,27 +1,37 @@
 ---
 # tasks file for ansible-role-install-python3
-- name: Install Python for the current OS family
+- name: Prepare to install Python for the current OS family
   ansible.builtin.include_tasks: "{{ ansible_os_family }}.yml"
 
-- name: Install Python 2 and associated packages if necessary
+- name: Install Python 2 and associated packages if necessary # noqa: var-spacing
   ansible.builtin.package:
     name: "{{ item.name | default(item) }}"
     update_cache: true
     state: present
-  loop: "{{ install_python2_packages + extra_python2_packages }}"
+  loop: "{{ install_python2_packages}}"
   when: install_python_version == 2
 
-- name: Install Python 3 and associated packages if necessary
+- name: Install Python 3 and associated packages if necessary # noqa: var-spacing
   ansible.builtin.package:
     name: "{{ item.name | default(item) }}"
     update_cache: true
     state: present
-  loop: "{{ install_python3_packages + extra_python3_packages }}"
+  loop: "{{ install_python3_packages}}"
   when: install_python_version == 3
 
 - name: Update pip to the latest version
   ansible.builtin.pip:
     name:
       - pip
-    # executable: "{{ 'pip3' if install_python_version == 3 else 'pip' }}"
-    extra_args: --upgrade
+    version: "{{ install_pip_version }}"
+    executable: "{{ 'pip3' if install_python_version == 3 else 'pip' }}"
+
+- name: Install Python 2 pip packages
+  ansible.builtin.pip:
+    name: "{{ python2_pip_packages }}"
+  when: install_python_version == 2
+
+- name: Install Python 3 pip packages
+  ansible.builtin.pip:
+    name: "{{ python3_pip_packages }}"
+  when: install_python_version == 3

@@ -1,6 +1,7 @@
 # Ansible Role: mirsg.install_python
 
-This role installs Python, pip, and setuptools on Debian and RedHat operating systems. It will also update pip to the latest version.
+This role installs Python, pip, and setuptools on Debian and RedHat operating systems. It will also update pip to the latest version or a
+user-specified version, and then install user-specified Python packages using pip.
 
 ## Requirements
 
@@ -24,11 +25,13 @@ If you would like to run Ansible Molecule to test this role, the requirements ar
 - python-setuptools
 ```
 
-`extra_python3_packages`: list of additional Python 3 packages to to be installed by the OS package manager, NOT by pip
-`extra_python2_packages`: list of additional Python 2 packages to to be installed by the OS package manager, NOT by pip
+The packages listed in the above variables will be installed by the OS package manager, NOT by pip.
 
-`python3_pip_packages`: list of Python 3 packages to be installed by pip
-`python2_pip_packages`: list of Python 2 packages to be installed by pip
+`install_pip_version`: version of pip to update to, defaults to `latest`.
+
+`python3_pip_packages`: list of Python 3 packages to be installed by pip, default to `[]`.
+
+`python2_pip_packages`: list of Python 2 packages to be installed by pip, defaults to `[]`.
 
 ## Dependencies
 
@@ -45,6 +48,16 @@ should be installed on your managed host. As such, you will need to gather these
 - name: Install Python 3
   hosts: all
   gather_facts: true
+  roles:
+    - mirsg.install_python
+```
+
+This will gather all facts before installing Python. If you would like to install only the necessary facts (`ansible_os_family` and `ansible_distribution_major_version`) to run the role and install Python, you can use `gather_subset`:
+
+```yaml
+- name: Install Python 3
+  hosts: all
+  gather_facts: true
   gather_subset:
     - "os_family"
     - "distribution_major_version"
@@ -53,8 +66,6 @@ should be installed on your managed host. As such, you will need to gather these
   roles:
     - mirsg.install_python
 ```
-
-This will gather only the necessary facts (`ansible_os_family` and `ansible_distribution_major_version`) to run the role and install Python.
 
 ## License
 

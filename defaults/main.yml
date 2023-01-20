@@ -1,5 +1,6 @@
 ---
 install_python_version: 3
+install_pip_version: "latest"
 
 install_python3_packages:
   - python3
@@ -10,9 +11,6 @@ install_python2_packages:
   - python
   - python-pip
   - python-setuptools
-
-extra_python2_packages: [] # to be installed by the OS package manager, NOT by pip
-extra_python3_packages: [] # to be installed by the OS package manager, NOT by pip
 
 python2_pip_packages: [] # to be installed using pip
 python3_pip_packages: [] # to be installed using pip3
