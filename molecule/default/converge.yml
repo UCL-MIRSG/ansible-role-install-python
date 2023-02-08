@@ -14,7 +14,7 @@
         tasks_from: "check_default_version"
     - name: Set install_python variable based on the version to be installed
       ansible.builtin.set_fact:
-        install_python: "{{ 'install_python2' if default_python_version is version('2') else 'install_python3' }}"
+        install_python: "{{ install_python2 if default_python_version is version('2') else install_python3 }}"
   tasks:
     - name: Install Python, pip, and setuptools
       ansible.builtin.include_role:
