@@ -9,7 +9,15 @@ If you would like to run Ansible Molecule to test this role, the requirements ar
 
 ## Role Variables
 
-`install_python_3_packages`: list of packages to be installed when Python 3 is the default interpreter. This defaults to:
+`install_python` is a dictionary contains the following varialbes:
+
+`version`: the version of Python to install. This defaults to `"3"`.
+
+`pip_version`: the version of pip to update to. This defaults to `"21.3.1"`.
+
+`pip_executable`: path to the pip executalbe to use for installing packages. This defaults to `"pip3"`
+
+`system_packages`: list of system packages to be installed along with Python. This defaults to:
 
 ```yaml
 - python3
@@ -17,21 +25,9 @@ If you would like to run Ansible Molecule to test this role, the requirements ar
 - python3-setuptools
 ```
 
-`install_python2_packages`: list of packages to be installed when Python 2 is the default interpreter. This defaults to:
+The packages listed in `install_python.system_packages` will be installed by the OS package manager, NOT by pip.
 
-```yaml
-- python
-- python-pip
-- python-setuptools
-```
-
-The packages listed in the above variables will be installed by the OS package manager, NOT by pip.
-
-`install_pip_version`: version of pip to update to, defaults to `latest`.
-
-`python3_pip_packages`: list of Python 3 packages to be installed by pip, default to `[]`.
-
-`python2_pip_packages`: list of Python 2 packages to be installed by pip, defaults to `[]`.
+`python3_pip_packages`: list of Python packages to be installed by pip. This defaults to `[]`.
 
 ## Dependencies
 
