@@ -10,7 +10,7 @@
   pre_tasks:
     - name: Set Python install version to 2 for older OSes
       ansible.builtin.set_fact:
-        install_python_version: 2
+        install_python: "{{ install_python2 }}"
       when: >
         (ansible_os_family == 'RedHat') and (ansible_distribution_major_version | int < 8) or
         (ansible_distribution == 'Debian') and (ansible_distribution_major_version | int < 10) or
