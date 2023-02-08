@@ -27,7 +27,7 @@ If you would like to run Ansible Molecule to test this role, the requirements ar
 
 The packages listed in `install_python.system_packages` will be installed by the OS package manager, NOT by pip.
 
-`python3_pip_packages`: list of Python packages to be installed by pip. This defaults to `[]`.
+`pip_packages`: list of Python packages to be installed by pip. This defaults to `[]`.
 
 ## Dependencies
 
