@@ -21,11 +21,8 @@ provisioner:
     defaults:
       callbacks_enabled: profile_tasks, timer, yaml
   inventory:
-    group_vars:
-      all:
-        additional_networks: []
-        default_networks:
-          - "0.0.0.0/0"
+    links:
+      group_vars: ../resources/inventory/group_vars/
   env:
     ANSIBLE_VERBOSITY: "1"
 
