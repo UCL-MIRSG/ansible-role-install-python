@@ -9,7 +9,7 @@ If you would like to run Ansible Molecule to test this role, the requirements ar
 
 ## Role Variables
 
-`install_python` is a dictionary contains the following varialbes:
+`install_python` is a dictionary that contains the following varialbes:
 
 `version`: the version of Python to install. This defaults to `"3"`.
 
@@ -35,30 +35,11 @@ There are no Ansible-Galaxy dependencies for this role.
 
 ## Example Playbook
 
-### Basic usage
-
-This role uses the Ansible facts `ansible_os_family` and `ansible_distribution_major_version` to determine whether Python 2 or Python 3
-should be installed on your managed host. As such, you will need to gather these facts when using this role:
+This role will install Python on a managed host. To used this role, add it to the list of roles in a play:
 
 ```yaml
-- name: Install Python 3
+- name: Install Python
   hosts: all
-  gather_facts: true
-  roles:
-    - mirsg.install_python
-```
-
-This will gather all facts before installing Python. If you would like to install only the necessary facts (`ansible_os_family` and `ansible_distribution_major_version`) to run the role and install Python, you can use `gather_subset`:
-
-```yaml
-- name: Install Python 3
-  hosts: all
-  gather_facts: true
-  gather_subset:
-    - "os_family"
-    - "distribution_major_version"
-    - "!min"
-    - "!all"
   roles:
     - mirsg.install_python
 ```
