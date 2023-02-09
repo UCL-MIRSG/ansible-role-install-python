@@ -9,7 +9,15 @@ If you would like to run Ansible Molecule to test this role, the requirements ar
 
 ## Role Variables
 
-`install_python_3_packages`: list of packages to be installed when Python 3 is the default interpreter. This defaults to:
+`install_python` is a dictionary that contains the following varialbes:
+
+`version`: the version of Python to install. This defaults to `"3"`.
+
+`pip_version`: the version of pip to update to. This defaults to `"21.3.1"`.
+
+`pip_executable`: path to the pip executalbe to use for installing packages. This defaults to `"pip3"`
+
+`system_packages`: list of system packages to be installed along with Python. This defaults to:
 
 ```yaml
 - python3
@@ -17,21 +25,9 @@ If you would like to run Ansible Molecule to test this role, the requirements ar
 - python3-setuptools
 ```
 
-`install_python2_packages`: list of packages to be installed when Python 2 is the default interpreter. This defaults to:
+The packages listed in `install_python.system_packages` will be installed by the OS package manager, NOT by pip.
 
-```yaml
-- python
-- python-pip
-- python-setuptools
-```
-
-The packages listed in the above variables will be installed by the OS package manager, NOT by pip.
-
-`install_pip_version`: version of pip to update to, defaults to `latest`.
-
-`python3_pip_packages`: list of Python 3 packages to be installed by pip, default to `[]`.
-
-`python2_pip_packages`: list of Python 2 packages to be installed by pip, defaults to `[]`.
+`pip_packages`: list of Python packages to be installed by pip. This defaults to `[]`.
 
 ## Dependencies
 
@@ -39,30 +35,11 @@ There are no Ansible-Galaxy dependencies for this role.
 
 ## Example Playbook
 
-### Basic usage
-
-This role uses the Ansible facts `ansible_os_family` and `ansible_distribution_major_version` to determine whether Python 2 or Python 3
-should be installed on your managed host. As such, you will need to gather these facts when using this role:
+This role will install Python on a managed host. To used this role, add it to the list of roles in a play:
 
 ```yaml
-- name: Install Python 3
+- name: Install Python
   hosts: all
-  gather_facts: true
-  roles:
-    - mirsg.install_python
-```
-
-This will gather all facts before installing Python. If you would like to install only the necessary facts (`ansible_os_family` and `ansible_distribution_major_version`) to run the role and install Python, you can use `gather_subset`:
-
-```yaml
-- name: Install Python 3
-  hosts: all
-  gather_facts: true
-  gather_subset:
-    - "os_family"
-    - "distribution_major_version"
-    - "!min"
-    - "!all"
   roles:
     - mirsg.install_python
 ```
