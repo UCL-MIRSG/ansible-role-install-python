@@ -30,6 +30,6 @@ repos:
     hooks:
       - id: shellcheck
   - repo: https://github.com/ansible-community/ansible-lint.git
-    rev: v6.3.0
+    rev: v6.21.1
     hooks:
       - id: ansible-lint
